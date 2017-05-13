@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta charset="utf-8" />
+      <title>UDream</title>
+      <meta name="description" content="overview &amp; stats" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      <!-- bootstrap & fontawesome -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+      <!-- page specific plugin styles -->
+      <!-- text fonts -->
+      <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+      <!-- ace styles -->
+      <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+      <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+      <![endif]-->
+      <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+      <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+      <!-- Groupon -->
+      <link rel="stylesheet" href="https://www2.grouponcdn.com/layout/assets/brnd-grpn-touch-v1.1.83-921fe0fb41.css">
+      <link rel="stylesheet" href="https://www2.grouponcdn.com/browse/assets/touch_styles-c73e6e6326.css">
+      <!-- ace settings handler -->
+      <script src="assets/js/ace-extra.min.js"></script>
+      <script src="https://maps.google.com/maps/api/js?key=AIzaSyD6ZadIgiYuBC9eTnnC5PovTteWhdZOM7k"></script>
+      <!-- ANGULAR.JS -->
+      <script src="assets/lib/angular.min.js"></script>
+      <script src="assets/lib/angular-animate.min.js"></script>
+      <script src="assets/lib/angular-sanitize.min.js"></script>
+      <script src="assets/lib/angular-route.min.js"></script>
+      <script src="assets/lib/angular-resource.min.js"></script>
+      <script src="assets/lib/angular-ui-router.min.js"></script>
+      <script src="assets/utils/lodgeoUtility.js"></script>
+      <script src="assets/controllers/promotions.js"></script>
+      <script src="assets/lib/ngStorage.js"></script>
+
+      <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+      <script src="lib/angularfire/dist/angularfire.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+      <!-- Firebase -->
+      <!--<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>-->
+      <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+      <script>
+         // Initialize Firebase
+         var config = {
+          apiKey: "AIzaSyDiOismV5QKmeRcpwziozJqYBLrYhD4p-4",
+          authDomain: "udream-e60e9.firebaseapp.com",
+          databaseURL: "https://udream-e60e9.firebaseio.com",
+          storageBucket: "udream-e60e9.appspot.com",
+          messagingSenderId: "964274225982"
+         };
+         firebase.initializeApp(config);
+      </script>
+   </head>
+   <body class="no-skin" ng-app="udream" ng-controller="promotionCtrl">
+     <div id="navbar" class="navbar navbar-default   ace-save-state">
+        <div class="navbar-container ace-save-state" id="navbar-container">
+           <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+           <span class="sr-only">Toggle sidebar</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           </button>
+           <div class="navbar-header pull-left">
+              <a href="index.html" class="navbar-brand" style="font-size:20px">
+              <small>
+              <i class="fa fa-leaf"></i>
+              UDream
+              </small>
+              </a>
+              <ul class="nav ace-nav">
+                 <li style="position: absolute;right: 0px;" class="light-blue dropdown-modal">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                    <img class="nav-user-photo" src="assets/images/avatars/avatar5.png" alt="Jason's Photo" />
+                    <!--<span class="user-info">
+                    <small>Bienvenido,</small>
+                    Jason
+                  </span>-->
+                    <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                       <li>
+                          <a href="#">
+                          <i class="ace-icon fa fa-cog"></i>
+                          Herramientas
+                          </a>
+                       </li>
+                       <li>
+                          <a href="#">
+                          <i class="ace-icon fa fa-user"></i>
+                          Perfil
+                          </a>
+                       </li>
+                       <li class="divider"></li>
+                       <li>
+                          <a href="#" ng-click="signOut()">
+                          <i class="ace-icon fa fa-power-off"></i>
+                          Salir
+                          </a>
+                       </li>
+                    </ul>
+                 </li>
+              </ul>
+           </div>
+           <div class="navbar-buttons navbar-header pull-right" role="navigation">
+              <ul class="nav ace-nav">
+                 <li style="width: 33%;" class="purple dropdown-modal">
+                    <a class="dropdown-toggle" href="main.html">
+                       <!--<i class="ace-icon fa fa-bell icon-animated-bell"></i>-->
+                       <span class="">Eventos</span>
+                    </a>
+                 </li>
+                 <li style="width: 33%;" class="green dropdown-modal">
+                    <a  class="dropdown-toggle" href="promotionsList.html">
+                       <!--	<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+                       <span class="">Promociones</span>
+                    </a>
+                 </li>
+                 <li style="width: 33%;" class="green dropdown-modal">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="">
+                       <!--	<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+                       <span class="">Apuestas</span>
+                    </a>
+                   <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+           <li class="dropdown-header">
+             <i class="ace-icon fa fa-key"></i>
+             3 Juegos
+           </li>
+
+           <li class="dropdown-content">
+             <ul class="dropdown-menu dropdown-navbar navbar-pink">
+               <li>
+                 <a href="loteria_nacional.html">
+                   <div class="clearfix">
+                     <span class="pull-left">
+                       <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_LoteriaNacional_titulo.png">
+                       Loteria nacional
+                     </span>
+                   </div>
+                 </a>
+               </li>
+
+               <li>
+                 <a href="primitiva.html">
+                   <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logoPrimitiva_titulo.png">
+                   Primitiva
+                 </a>
+               </li>
+
+               <li>
+                 <a href="euromillon.html">
+                   <div class="clearfix">
+                     <span class="pull-left">
+                       <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logoEuromillones_titulo.png">
+                       Euromillones
+                     </span>
+                   </div>
+                 </a>
+               </li>
+
+             </ul>
+           </li>
+
+         </ul>
+                 </li>
+
+              </ul>
+           </div>
+        </div>
+        <!-- /.navbar-container -->
+     </div>
+      <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+           try{ace.settings.loadState('main-container')}catch(e){}
+        </script>
+        <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+           <script type="text/javascript">
+              try{ace.settings.loadState('sidebar')}catch(e){}
+           </script>
+           <ul class="nav nav-list">
+              <li class="active">
+                 <a href="index.html">
+                 <i class="menu-icon fa fa-cogs"></i>
+                 <span class="menu-text"> Opciones </span>
+                 </a>
+                 <b class="arrow"></b>
+              </li>
+              <li class="">
+                 <a href="main.html">
+                 <i class="menu-icon fa fa-picture-o"></i>
+                 <span class="menu-text"> Eventos </span>
+                 </a>
+                 <b class="arrow"></b>
+              </li>
+              <li class="">
+                 <a href="promotionsList.html">
+                 <i class="menu-icon fa fa-list-alt"></i>
+                 <span class="menu-text"> Promociones </span>
+                 </a>
+                 <b class="arrow"></b>
+              </li>
+              <!--<li class="">
+                 <a href="widgets.html">
+                 <i class="menu-icon fa fa-bolt"></i>
+                 <span class="menu-text"> Apuestas </span>
+                 </a>
+                 <b class="arrow"></b>
+              </li>-->
+              <li class="">
+                 <a href="#">
+                 <i class="menu-icon fa fa-user"></i>
+                 <span class="menu-text"> Perfil </span>
+                 </a>
+                 <b class="arrow"></b>
+              </li>
+              <li class="">
+                 <a href="#">
+                 <i class="menu-icon fa fa-cog"></i>
+                 <span class="menu-text"> Herramientas </span>
+                 </a>
+                 <b class="arrow"></b>
+              </li>
+              <li class="">
+                 <a href="#" ng-click="signOut()">
+                 <i class="menu-icon fa fa-power-off"></i>
+                 <span class="menu-text"> Salir </span>
+                 </a>
+                 <b class="arrow"></b>
+              </li>
+           </ul>
+           <!-- /.nav-list -->
+           <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+              <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+           </div>
+        </div>
+         <div class="main-content">
+            <div class="main-content-inner">
+               <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                  <ul class="breadcrumb">
+                     <li>
+                        <i class="ace-icon fa fa-globe home-icon" style="vertical-align: middle;"></i>
+                        <a style="text-decoration: none;" href="#">Londres,inglaterra</a>
+                     </li>
+                  </ul>
+                  <!-- /.breadcrumb -->
+                  <div class="nav-search" id="nav-search">
+                     <form class="form-search">
+                        <span class="input-icon">
+                        <input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                        </span>
+                     </form>
+                  </div>
+                  <!-- /.nav-search -->
+               </div>
+               <div class="page-content" style="padding: 0px 0px;">
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="t-main-inner" style="padding: 0px 10px;">
+                           <div class="touch-deals" data-bhw="BrowseDeals" data-bhw-path="BrowseDeals">
+                              <ul class="t-deals touch cui-one-up ">
+                                 <li class="impression" ng-repeat="offer in promo">
+                                    <a  ng-click="seeOffer(offer)" href="promotion.html" data-pagination-id="taste-of-india-17-26636089" data-bhc="deal:bc4a70b2-bff9-4e6a-a8ac-a397cab89312" data-bhd="{&quot;permalink&quot;:&quot;taste-of-india-17-26636089&quot;}" data-bh-viewport="respect" data-bhc-path="Occasion-DealGrid|deal:bc4a70b2-bff9-4e6a-a8ac-a397cab89312">
+                                       <img style="height: 225px;" src="assets/images/menu.jpeg"  width="460" height="185" class="lazy-load">
+                                       <div class="t-details">
+                                          <h2  style="-webkit-font-smoothing:inherit;" class="deal-title" ng-bind="offer.description"></h2>
+                                          <div  class="t-merchant merchant-name" ng-bind="offer.company"></div>
+                                          <div class="t-price-etc">
+                                             <div class="t-price"><span class="original-price">{{offer.price_before}}&nbsp;</span><span class="current-price">{{offer.price_discount}}&nbsp;</span></div>
+                                             <div class="t-etc">
+                                                <span class="urgency"></span>
+                                                <!--<span class="sold-quantity">500+ Comprado</span>-->
+                                                <span  class="deal-location" ng-bind="offer.city"></span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </a>
+                                 </li>
+                                 <!-- <li class="impression">
+                                    <a href="https://www.groupon.es/deals/taste-of-india-17-26636089" data-pagination-id="taste-of-india-17-26636089" data-bhc="deal:bc4a70b2-bff9-4e6a-a8ac-a397cab89312" data-bhd="{&quot;permalink&quot;:&quot;taste-of-india-17-26636089&quot;}" data-bh-viewport="respect" data-bhc-path="Occasion-DealGrid|deal:bc4a70b2-bff9-4e6a-a8ac-a397cab89312">
+                                    	<img src="//img.grouponcdn.com/sparta/mY8JxsuNGAwMFftX367A/jN-75x45.png" class="" alt="" style="background-image: url(&quot;https://img.grouponcdn.com/deal/dGqLB7dDAYziosPKUNpw/2P-2048x1229/v1/c440x300.jpg&quot;); background-size: cover;">
+                                    	<div class="t-details">
+                                    		<h2  style="color: white;" class="deal-title">Menú para 2 o 4 con aperitivo, entrantes, principales, acompañamientos, postre y bebida desde 19,95 € en Taste of India</h2>
+                                    		<div class="t-merchant merchant-name">500+ Comprado</div>
+                                    		<div class="t-price-etc">
+                                    				<div class="t-price"><span class="original-price">80&nbsp;€</span><span class="current-price">19,95&nbsp;€</span></div>
+
+                                    				<div class="t-etc">
+                                    					<span class="urgency"></span>
+                                    					<span class="sold-quantity">500+ Comprado</span>
+                                    					<span class="deal-location">Taste of India</span>
+                                    				</div>
+                                    		</div>
+                                    	</div>
+                                    </a>
+                                    </li>
+
+                                    <li class="impression">
+                                    <a href="https://www.groupon.es/deals/autoescuela-online-2" data-pagination-id="autoescuela-online-2" data-bhc="deal:782c90dc-5daa-4658-bd03-c1019c32f284" data-bhd="{&quot;permalink&quot;:&quot;autoescuela-online-2&quot;}" data-bh-viewport="respect" data-bhc-path="Occasion-DealGrid|deal:782c90dc-5daa-4658-bd03-c1019c32f284">
+                                    	<img src="//img.grouponcdn.com/sparta/mY8JxsuNGAwMFftX367A/jN-75x45.png" class="" alt="" style="background-image: url(&quot;https://img.grouponcdn.com/iam/3op2unmjYEApyeen97ce2K7UfE7L/3o-1796x1077/v1/c440x300.jpg&quot;); background-size: cover;">
+                                    	<div class="t-details">
+                                    		<h2 style="color: white;" class="deal-title">Curso para obtener el carné de moto A1 o A2 con 6 o 8 prácticas o curso de carné A desde 39,90 € en Autoescuela Online</h2>
+                                    		<div class="t-merchant merchant-name">Autoescuela Online</div>
+                                    		<div class="t-price-etc">
+                                    				<div class="t-price"><span class="original-price">240&nbsp;€</span><span class="current-price">39,90&nbsp;€</span></div>
+
+                                    				<div class="t-etc">
+                                    					<span class="urgency"></span>
+                                    					<span class="sold-quantity">50+ Comprado</span>
+                                    					<span class="deal-location">Varias localizaciones</span>
+                                    				</div>
+                                    		</div>
+                                    	</div>
+                                    </a>
+                                    </li>
+
+                                    		 <li class="legacy-card" data-id="deal:ad14a791-c686-4f4f-8155-98bc31f458e6" data-pingdom-info="purchasable-deal">
+                                    		 <a href="https://www.groupon.es/deals/le-max-wellness-club-wellington-76" data-bhc="deal:ad14a791-c686-4f4f-8155-98bc31f458e6" data-bhd="{&quot;cardUUID&quot;:&quot;ad14a791-c686-4f4f-8155-98bc31f458e6&quot;,&quot;cardSubtype&quot;:&quot;LOCAL&quot;,&quot;title&quot;:{&quot;type&quot;:&quot;title&quot;,&quot;content&quot;:&quot;Spa y masaje en hotel 5*&quot;},&quot;slot_1&quot;:{&quot;type&quot;:&quot;location-and-distance&quot;,&quot;content&quot;:&quot;Le Max Wellness Club Wellington(0,9 km)&quot;},&quot;slot_2&quot;:{&quot;type&quot;:&quot;number-bought&quot;,&quot;content&quot;:670},&quot;value&quot;:{&quot;type&quot;:&quot;price&quot;,&quot;content&quot;:&quot;100&nbsp;€ 29,95&nbsp;€&quot;}}" data-bh-viewport="respect" data-bhc-path="BrowseDeals|deal:ad14a791-c686-4f4f-8155-98bc31f458e6">
+                                    			 <img data-original="https://img.grouponcdn.com/deal/cpswVu21jkHeq2fhJwVH/Rt-960x576/v1/c440x266q50.jpg" class="lazy-load  " alt="imagen para Spa y masaje en hotel 5*" src="https://img.grouponcdn.com/deal/cpswVu21jkHeq2fhJwVH/Rt-960x576/v1/c440x266q50.jpg" height="219">
+                                    			 <div class="t-details ">
+                                    				 <h2 style="color: white;">Spa y masaje en hotel 5*</h2>
+                                    				 <div class="t-merchant">Le Max Wellness Club Wellington</div>
+                                    				 <div class="t-price-etc">
+                                    					 <div class="t-price">
+                                    							 <span >100&nbsp;€</span><span>29,95&nbsp;€</span>
+                                    					 </div>
+                                    					 <div class="t-etc">
+                                    							 670+ Comprados
+
+                                    							 •
+                                    							 0,9 km
+
+                                    					 </div>
+                                    				 </div>
+                                    			 </div>
+
+                                    			 <div class="deal-image-cta-overlay">
+                                    			 </div>
+                                    		 </a>
+                                    		 </li>
+                                    		 <li id="gallery_banner" class="gallery-banner-container" data-bhw="GalleryBanner" data-bhw-path="BrowseDeals|GalleryBanner">
+                                    				<a href="http://vuelos.groupon.es/es-ES/flights">
+                                    					<img src="https://img.grouponcdn.com/deal/4QDrZwSm7Z36y1EVbR3Ld12jgCeb/4Q-766x166" class="gallery-banner" alt="Gallery Banner" width="px" height="px">
+                                    				</a>
+                                    			</li>
+                                    		 <li class="legacy-card" data-id="deal:ebb5587d-9058-4b0c-9a63-fb6daaced9e5" data-pingdom-info="purchasable-deal">
+                                    			 <a href="https://www.groupon.es/deals/thai-room-wellness-madrid-4" data-bhc="deal:ebb5587d-9058-4b0c-9a63-fb6daaced9e5" data-bhd="{&quot;cardUUID&quot;:&quot;ebb5587d-9058-4b0c-9a63-fb6daaced9e5&quot;,&quot;cardSubtype&quot;:&quot;LOCAL&quot;,&quot;title&quot;:{&quot;type&quot;:&quot;title&quot;,&quot;content&quot;:&quot;Masaje tailandes en pareja&quot;},&quot;slot_1&quot;:{&quot;type&quot;:&quot;location-and-distance&quot;,&quot;content&quot;:&quot;Thai Room Wellness(0,9 km)&quot;},&quot;slot_2&quot;:{&quot;type&quot;:&quot;number-bought&quot;,&quot;content&quot;:1000},&quot;value&quot;:{&quot;type&quot;:&quot;price&quot;,&quot;content&quot;:&quot;170&nbsp;€ 69&nbsp;€&quot;}}" data-bh-viewport="respect" data-bhc-path="BrowseDeals|deal:ebb5587d-9058-4b0c-9a63-fb6daaced9e5">
+                                    				 <img data-original="https://img.grouponcdn.com/deal/jwioGsJw1N38xXfT8ZkFBo/04-700x420/v1/c440x266q50.jpg" class="lazy-load  " alt="imagen para Masaje tailandes en pareja
+                                    		 " src="https://img.grouponcdn.com/deal/jwioGsJw1N38xXfT8ZkFBo/04-700x420/v1/c440x266q50.jpg" height="219">
+                                    				 <div class="t-details ">
+                                    					 <h2 style="color: white;">Masaje tailandes en pareja</h2>
+                                    					 <div class="t-merchant">THAI ROOM WELLNESS - MADRID</div>
+                                    					 <div class="t-price-etc">
+                                    						 <div class="t-price">
+                                    								 <span>170&nbsp;€</span><span>69&nbsp;€</span>
+                                    						 </div>
+                                    						 <div class="t-etc">
+                                    								 1.000+ Comprados
+
+                                    								 •
+                                    								 0,9 km
+
+                                    						 </div>
+                                    					 </div>
+                                    				 </div>
+
+                                    				 <div class="deal-image-cta-overlay">
+                                    				 </div>
+                                    			 </a>
+                                    		 </li>
+                                    		 <li class="legacy-card" data-id="deal:cfd2ac48-050d-4b07-b2af-17cf5e221bc0" data-pingdom-info="purchasable-deal">
+                                    			 <a href="https://www.groupon.es/deals/drink6-by-nutrimedic-5" data-bhc="deal:cfd2ac48-050d-4b07-b2af-17cf5e221bc0" data-bhd="{&quot;cardUUID&quot;:&quot;cfd2ac48-050d-4b07-b2af-17cf5e221bc0&quot;,&quot;cardSubtype&quot;:&quot;LOCAL&quot;,&quot;title&quot;:{&quot;type&quot;:&quot;title&quot;,&quot;content&quot;:&quot;Plan detox depurativo&quot;},&quot;slot_1&quot;:{&quot;type&quot;:&quot;location-and-distance&quot;,&quot;content&quot;:&quot;Drink6 by Nutrimedic(0,4 km)&quot;},&quot;value&quot;:{&quot;type&quot;:&quot;price&quot;,&quot;content&quot;:&quot;45&nbsp;€ 31&nbsp;€&quot;}}" data-bh-viewport="respect" data-bhc-path="BrowseDeals|deal:cfd2ac48-050d-4b07-b2af-17cf5e221bc0">
+                                    				 <img data-original="https://img.grouponcdn.com/deal/LBsaKVM2d3xo2k7STjunxZR5pUG/LB-1155x693/v1/c440x266q50.jpg" class="lazy-load  " alt="imagen para Plan detox depurativo" src="https://img.grouponcdn.com/deal/LBsaKVM2d3xo2k7STjunxZR5pUG/LB-1155x693/v1/c440x266q50.jpg" height="219">
+                                    				 <div class="t-details ">
+                                    					 <h2 style="color: white;">Plan detox depurativo</h2>
+                                    					 <div class="t-merchant">Drink6 by Nutrimedic</div>
+                                    					 <div class="t-price-etc">
+                                    						 <div class="t-price">
+                                    								 <span>45&nbsp;€</span><span>31&nbsp;€</span>
+                                    						 </div>
+                                    						 <div class="t-etc">
+                                    								 0 Comprados
+
+                                    								 •
+                                    								 0,4 km
+
+                                    						 </div>
+                                    					 </div>
+                                    				 </div>
+
+                                    				 <div class="deal-image-cta-overlay">
+                                    				 </div>
+                                    			 </a>
+                                    		 </li>
+                                    		 <li class="legacy-card" data-id="deal:ad4084f9-9af3-423a-a079-dd86a9d3e391" data-pingdom-info="purchasable-deal">
+                                    			 <a href="https://www.groupon.es/deals/7-fun-center" data-bhc="deal:ad4084f9-9af3-423a-a079-dd86a9d3e391" data-bhd="{&quot;cardUUID&quot;:&quot;ad4084f9-9af3-423a-a079-dd86a9d3e391&quot;,&quot;cardSubtype&quot;:&quot;LOCAL&quot;,&quot;title&quot;:{&quot;type&quot;:&quot;title&quot;,&quot;content&quot;:&quot;Parque de ocio infantil&quot;},&quot;slot_1&quot;:{&quot;type&quot;:&quot;location-and-distance&quot;,&quot;content&quot;:&quot;7 Fun Center(20,3 km)&quot;},&quot;slot_2&quot;:{&quot;type&quot;:&quot;number-bought&quot;,&quot;content&quot;:30},&quot;value&quot;:{&quot;type&quot;:&quot;price&quot;,&quot;content&quot;:&quot;22&nbsp;€ 14,95&nbsp;€&quot;}}" data-bh-viewport="respect" data-bhc-path="BrowseDeals|deal:ad4084f9-9af3-423a-a079-dd86a9d3e391">
+                                    				 <img data-original="https://img.grouponcdn.com/deal/4LkToGn2BPgFVyv6sJQupsZmVAm5/4L-1500x900/v1/c440x266q50.jpg" class="lazy-load  " alt="imagen para Parque de ocio infantil" src="https://img.grouponcdn.com/deal/4LkToGn2BPgFVyv6sJQupsZmVAm5/4L-1500x900/v1/c440x266q50.jpg" height="219">
+                                    				 <div class="t-details ">
+                                    					 <h2 style="color: white;">Parque de ocio infantil</h2>
+                                    					 <div class="t-merchant">7 Fun Center</div>
+                                    					 <div class="t-price-etc">
+                                    						 <div class="t-price">
+                                    								 <span>22&nbsp;€</span><span>14,95&nbsp;€</span>
+                                    						 </div>
+                                    						 <div class="t-etc">
+                                    								 30+ Comprados
+
+                                    								 •
+                                    								 20,3 km
+
+                                    						 </div>
+                                    					 </div>
+                                    				 </div>
+
+                                    				 <div class="deal-image-cta-overlay">
+                                    				 </div>
+                                    			 </a>
+                                    		 </li>-->
+                              </ul>
+                           </div>
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                     </div>
+                     <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+               </div>
+               <!-- /.page-content -->
+            </div>
+         </div>
+         <!-- /.main-content -->
+         <div class="footer">
+            <div class="footer-inner">
+               <div class="footer-content">
+                  <span class="bigger-120">
+                  <span class="blue bolder">BMA</span>
+                  Aplicaciones &copy; 2017
+                  </span>
+               </div>
+            </div>
+         </div>
+         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+         </a>
+      </div>
+      <!-- /.main-container -->
+      <!-- basic scripts -->
+      <!--[if !IE]> -->
+      <script src="assets/js/jquery-2.1.4.min.js"></script>
+      <!-- <![endif]-->
+      <!--[if IE]>
+      <script src="assets/js/jquery-1.11.3.min.js"></script>
+      <![endif]-->
+      <script type="text/javascript">
+         if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+      </script>
+      <script src="assets/js/bootstrap.min.js"></script>
+      <!-- page specific plugin scripts -->
+      <!--[if lte IE 8]>
+      <script src="assets/js/excanvas.min.js"></script>
+      <![endif]-->
+      <script src="assets/js/jquery-ui.custom.min.js"></script>
+      <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+      <script src="assets/js/jquery.easypiechart.min.js"></script>
+      <script src="assets/js/jquery.sparkline.index.min.js"></script>
+      <script src="assets/js/jquery.flot.min.js"></script>
+      <script src="assets/js/jquery.flot.pie.min.js"></script>
+      <script src="assets/js/jquery.flot.resize.min.js"></script>
+      <!-- ace scripts -->
+      <script src="assets/js/ace-elements.min.js"></script>
+      <script src="assets/js/ace.min.js"></script>
+      <!-- inline scripts related to this page -->
+      <script type="text/javascript">
+         jQuery(function($) {
+         	$('.easy-pie-chart.percentage').each(function(){
+         		var $box = $(this).closest('.infobox');
+         		var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+         		var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+         		var size = parseInt($(this).data('size')) || 50;
+         		$(this).easyPieChart({
+         			barColor: barColor,
+         			trackColor: trackColor,
+         			scaleColor: false,
+         			lineCap: 'butt',
+         			lineWidth: parseInt(size/10),
+         			animate: ace.vars['old_ie'] ? false : 1000,
+         			size: size
+         		});
+         	})
+
+         	$('.sparkline').each(function(){
+         		var $box = $(this).closest('.infobox');
+         		var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+         		$(this).sparkline('html',
+         						 {
+         							tagValuesAttribute:'data-values',
+         							type: 'bar',
+         							barColor: barColor ,
+         							chartRangeMin:$(this).data('min') || 0
+         						 });
+         	});
+
+
+           //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
+           //but sometimes it brings up errors with normal resize event handlers
+           $.resize.throttleWindow = false;
+
+           var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+           var data = [
+         	{ label: "social networks",  data: 38.7, color: "#68BC31"},
+         	{ label: "search engines",  data: 24.5, color: "#2091CF"},
+         	{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
+         	{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
+         	{ label: "other",  data: 10, color: "#FEE074"}
+           ]
+           function drawPieChart(placeholder, data, position) {
+          	  $.plot(placeholder, data, {
+         		series: {
+         			pie: {
+         				show: true,
+         				tilt:0.8,
+         				highlight: {
+         					opacity: 0.25
+         				},
+         				stroke: {
+         					color: '#fff',
+         					width: 2
+         				},
+         				startAngle: 2
+         			}
+         		},
+         		legend: {
+         			show: true,
+         			position: position || "ne",
+         			labelBoxBorderColor: null,
+         			margin:[-30,15]
+         		}
+         		,
+         		grid: {
+         			hoverable: true,
+         			clickable: true
+         		}
+         	 })
+          }
+          drawPieChart(placeholder, data);
+
+          /**
+          we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
+          so that's not needed actually.
+          */
+          placeholder.data('chart', data);
+          placeholder.data('draw', drawPieChart);
+
+
+           //pie chart tooltip example
+           var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+           var previousPoint = null;
+
+           placeholder.on('plothover', function (event, pos, item) {
+         	if(item) {
+         		if (previousPoint != item.seriesIndex) {
+         			previousPoint = item.seriesIndex;
+         			var tip = item.series['label'] + " : " + item.series['percent']+'%';
+         			$tooltip.show().children(0).text(tip);
+         		}
+         		$tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+         	} else {
+         		$tooltip.hide();
+         		previousPoint = null;
+         	}
+
+          });
+
+         	/////////////////////////////////////
+         	$(document).one('ajaxloadstart.page', function(e) {
+         		$tooltip.remove();
+         	});
+
+
+
+
+         	var d1 = [];
+         	for (var i = 0; i < Math.PI * 2; i += 0.5) {
+         		d1.push([i, Math.sin(i)]);
+         	}
+
+         	var d2 = [];
+         	for (var i = 0; i < Math.PI * 2; i += 0.5) {
+         		d2.push([i, Math.cos(i)]);
+         	}
+
+         	var d3 = [];
+         	for (var i = 0; i < Math.PI * 2; i += 0.2) {
+         		d3.push([i, Math.tan(i)]);
+         	}
+
+
+         	var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+         	$.plot("#sales-charts", [
+         		{ label: "Domains", data: d1 },
+         		{ label: "Hosting", data: d2 },
+         		{ label: "Services", data: d3 }
+         	], {
+         		hoverable: true,
+         		shadowSize: 0,
+         		series: {
+         			lines: { show: true },
+         			points: { show: true }
+         		},
+         		xaxis: {
+         			tickLength: 0
+         		},
+         		yaxis: {
+         			ticks: 10,
+         			min: -2,
+         			max: 2,
+         			tickDecimals: 3
+         		},
+         		grid: {
+         			backgroundColor: { colors: [ "#fff", "#fff" ] },
+         			borderWidth: 1,
+         			borderColor:'#555'
+         		}
+         	});
+
+
+         	$('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+         	function tooltip_placement(context, source) {
+         		var $source = $(source);
+         		var $parent = $source.closest('.tab-content')
+         		var off1 = $parent.offset();
+         		var w1 = $parent.width();
+
+         		var off2 = $source.offset();
+         		//var w2 = $source.width();
+
+         		if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+         		return 'left';
+         	}
+
+
+         	$('.dialogs,.comments').ace_scroll({
+         		size: 300
+             });
+
+
+         	//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+         	//so disable dragging when clicking on label
+         	var agent = navigator.userAgent.toLowerCase();
+         	if(ace.vars['touch'] && ace.vars['android']) {
+         	  $('#tasks').on('touchstart', function(e){
+         		var li = $(e.target).closest('#tasks li');
+         		if(li.length == 0)return;
+         		var label = li.find('label.inline').get(0);
+         		if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
+         	  });
+         	}
+
+         	$('#tasks').sortable({
+         		opacity:0.8,
+         		revert:true,
+         		forceHelperSize:true,
+         		placeholder: 'draggable-placeholder',
+         		forcePlaceholderSize:true,
+         		tolerance:'pointer',
+         		stop: function( event, ui ) {
+         			//just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
+         			$(ui.item).css('z-index', 'auto');
+         		}
+         		}
+         	);
+         	$('#tasks').disableSelection();
+         	$('#tasks input:checkbox').removeAttr('checked').on('click', function(){
+         		if(this.checked) $(this).closest('li').addClass('selected');
+         		else $(this).closest('li').removeClass('selected');
+         	});
+
+
+         	//show the dropdowns on top or bottom depending on window height and menu position
+         	$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
+         		var offset = $(this).offset();
+
+         		var $w = $(window)
+         		if (offset.top > $w.scrollTop() + $w.innerHeight() - 100)
+         			$(this).addClass('dropup');
+         		else $(this).removeClass('dropup');
+         	});
+
+         })
+      </script>
+   </body>
+</html>

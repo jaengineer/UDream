@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta charset="utf-8" />
+      <title>UDream</title>
+      <meta name="description" content="overview &amp; stats" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      <!-- bootstrap & fontawesome -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+      <!-- page specific plugin styles -->
+      <!-- text fonts -->
+      <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+      <!-- ace styles -->
+      <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+      <link rel="stylesheet" href="assets/css/jquery.gritter.min.css" />
+      <!-- Groupon -->
+      <link rel="stylesheet" href="https://www2.grouponcdn.com/layout/assets/brnd-grpn-touch-v1.1.83-921fe0fb41.css">
+      <link rel="stylesheet" href="https://www2.grouponcdn.com/browse/assets/touch_styles-c73e6e6326.css">
+      <script src="https://maps.google.com/maps/api/js?key=AIzaSyD6ZadIgiYuBC9eTnnC5PovTteWhdZOM7k"></script>
+      <!-- ANGULAR.JS -->
+      <script src="assets/lib/angular.min.js"></script>
+      <script src="assets/lib/angular-animate.min.js"></script>
+      <script src="assets/lib/angular-sanitize.min.js"></script>
+      <script src="assets/lib/angular-route.min.js"></script>
+      <script src="assets/lib/angular-resource.min.js"></script>
+      <script src="assets/lib/angular-ui-router.min.js"></script>
+      <script src="assets/utils/lodgeoUtility.js"></script>
+      <script src="assets/controllers/premios.js"></script>
+      <script src="assets/lib/ngStorage.js"></script>
+
+      <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+      <script src="lib/angularfire/dist/angularfire.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+      <!-- Firebase -->
+      <!--<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>-->
+      <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+      <script>
+         // Initialize Firebase
+         var config = {
+          apiKey: "AIzaSyDiOismV5QKmeRcpwziozJqYBLrYhD4p-4",
+          authDomain: "udream-e60e9.firebaseapp.com",
+          databaseURL: "https://udream-e60e9.firebaseio.com",
+          storageBucket: "udream-e60e9.appspot.com",
+          messagingSenderId: "964274225982"
+         };
+         firebase.initializeApp(config);
+      </script>
+   </head>
+   <body class="no-skin" ng-app="udream" ng-controller="premiosCtrl">
+      <div id="navbar" class="navbar navbar-default   ace-save-state" style="background: #2b5d83;">
+         <div class="navbar-container ace-save-state" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar" style="background: #2b5d83;">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header pull-left">
+               <a href="index.html" class="navbar-brand" style="font-size:20px">
+               <small>
+               <i class="fa fa-leaf"></i>
+               UDream
+               </small>
+               </a>
+               <ul class="nav ace-nav">
+                  <li style="position: absolute;right: 0px;" class="light-blue dropdown-modal">
+                     <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="background: #2b5d83;">
+                    <i class="fa fa-cogs"></i>
+                     <!--<span class="user-info">
+                     <small>Bienvenido,</small>
+                     Jason
+                   </span>-->
+                     <i class="ace-icon fa fa-caret-down"></i>
+                     </a>
+                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                           <a href="#">
+                           <i class="ace-icon fa fa-cog"></i>
+                           Herramientas
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                           <i class="ace-icon fa fa-user"></i>
+                           Perfil
+                           </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <a href="#" ng-click="signOut()">
+                           <i class="ace-icon fa fa-power-off"></i>
+                           Salir
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+               <ul class="nav ace-nav">
+                  <li style="width: 33%;" class="purple dropdown-modal">
+                     <a class="dropdown-toggle" href="main.html" style="background: #2b5d83;">
+                        <!--<i class="ace-icon fa fa-bell icon-animated-bell"></i>-->
+                        <span class="">Eventos</span>
+                     </a>
+                  </li>
+                  <li style="width: 33%;" class="green dropdown-modal">
+                     <a  class="dropdown-toggle" href="promotionsList.html" style="background: #2b5d83;">
+                        <!--	<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+                        <span class="">Promociones</span>
+                     </a>
+                  </li>
+                  <li style="width: 33%;" class="green dropdown-modal">
+                     <a data-toggle="dropdown" class="dropdown-toggle" href="" style="background: #2b5d83;">
+                        <!--	<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+                        <span class="">Apuestas</span>
+                     </a>
+										 <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+						 <li class="dropdown-header">
+							 <i class="ace-icon fa fa-key"></i>
+							 3 Juegos
+						 </li>
+
+						 <li class="dropdown-content">
+							 <ul class="dropdown-menu dropdown-navbar navbar-pink">
+								 <li>
+									 <a href="loteria_nacional.html">
+										 <div class="clearfix">
+											 <span class="pull-left">
+												 <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_LoteriaNacional_titulo.png">
+												 Loteria nacional
+											 </span>
+										 </div>
+									 </a>
+								 </li>
+
+								 <li>
+									 <a href="primitiva.html">
+										 <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logoPrimitiva_titulo.png">
+										 Primitiva
+									 </a>
+								 </li>
+
+								 <li>
+									 <a href="euromillon.html">
+										 <div class="clearfix">
+											 <span class="pull-left">
+												 <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logoEuromillones_titulo.png">
+												 Euromillones
+											 </span>
+										 </div>
+									 </a>
+								 </li>
+
+							 </ul>
+						 </li>
+					 </ul>
+                  </li>
+
+               </ul>
+            </div>
+         </div>
+         <!-- /.navbar-container -->
+      </div>
+      <div class="main-container ace-save-state" id="main-container">
+         <script type="text/javascript">
+            try{ace.settings.loadState('main-container')}catch(e){}
+         </script>
+         <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+            <script type="text/javascript">
+               try{ace.settings.loadState('sidebar')}catch(e){}
+            </script>
+            <ul class="nav nav-list">
+               <li class="active">
+                  <a href="index.html">
+                  <i class="menu-icon fa fa-cogs"></i>
+                  <span class="menu-text"> Opciones </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+               <li class="">
+                  <a href="main.html">
+                  <i class="menu-icon fa fa-picture-o"></i>
+                  <span class="menu-text"> Eventos </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+               <li class="">
+                  <a href="promotionsList.html">
+                  <i class="menu-icon fa fa-list-alt"></i>
+                  <span class="menu-text"> Promociones </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+               <li class="">
+                  <a href="#">
+                  <i class="menu-icon fa fa-user"></i>
+                  <span class="menu-text"> Perfil </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+               <li class="">
+                  <a href="#">
+                  <i class="menu-icon fa fa-cog"></i>
+                  <span class="menu-text"> Herramientas </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+               <li class="">
+                  <a href="#" ng-click="signOut()">
+                  <i class="menu-icon fa fa-power-off"></i>
+                  <span class="menu-text"> Salir </span>
+                  </a>
+                  <b class="arrow"></b>
+               </li>
+            </ul>
+            <!-- /.nav-list -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+               <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+         </div>
+         <div class="main-content">
+            <div class="main-content-inner">
+               <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                  <ul class="breadcrumb">
+                     <li>
+                        <i class="ace-icon fa fa-globe home-icon" style="vertical-align: middle;"></i>
+                        <a style="text-decoration: none;color: #2b5d83;" href="#">{{city}},{{prov}}</a>
+                     </li>
+                  </ul>
+                  <!-- /.breadcrumb -->
+                  <div class="nav-search" id="nav-search">
+                     <form class="form-search">
+                        <span class="input-icon">
+                        <input ng-change="citySelected()" ng-model="myCity" type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                        </span>
+                     </form>
+                  </div>
+                  <!-- /.nav-search -->
+               </div>
+               <div class="page-content" style="padding: 0px 0px;">
+                  <div class="row">
+                     <div class="col-xs-12">
+
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="" style="padding: 0px 10px;">
+                           <div class="touch-deals">
+														 	<!-- Lista de premios -->
+															<ul  class="t-deals touch cui-one-up ">
+                                 <li ng-repeat="premio in premios">
+                                    <!--<a  ng-click="verAventuraVirtual(premio)" href="juegoVirtual2.html">-->
+                                    <a  ng-click="verAventuraVirtual(premio)" href="">
+                                       <img ng-show="premio.typeGame && premio.typeGame ==='playAtHome'" style="height: 225px;" src="assets/images/virtual_map.jpg"  width="460" height="185" class="lazy-load">
+                                       <img ng-show="premio.typeGame && premio.typeGame ==='GeoStreetView'" style="height: 225px;" src="assets/images/streview_map2.jpg"  width="460" height="185" class="lazy-load">
+                                       <img ng-show="!premio.typeGame" style="height: 225px;" src="assets/images/tesoro.jpg"  width="460" height="185" class="lazy-load">
+                                       <div ng-show="premio.typeGame && premio.typeGame ==='playAtHome'" style="position:absolute;top:0px;height:42px;width:138px" class="t-details">
+                                         juega desde casa <span style="font-size:12px;line-height: 20px;color: yellow;" ng-bind="premio.dates_range"></span>
+                                       </div>
+                                       <div ng-show="premio.typeGame && premio.typeGame ==='GeoStreetView'" style="position:absolute;top:0px;height:44px;width:95px" class="t-details">
+                                         Streetview <span style="font-size:12px;line-height: 20px;color: yellow;" ng-bind="premio.dates_range"></span>
+                                       </div>
+                                       <div class="t-details">
+                                          <h2 ng-bind="premio.description" style="-webkit-font-smoothing:inherit;"></h2>
+                                          <div  class="t-price-etc">
+                                             <div class="t-price"><span class="original-price"></span><span class="current-price" style="-webkit-font-smoothing:inherit;color:yellow">GANA  {{premio.premio_value}}</span></div>
+                                             <div class="t-etc" style="-webkit-font-smoothing:inherit;font-weight: 700;font-size: 12px;" ng-bind="premio.time"></div>
+                                             <div class="t-etc" style="-webkit-font-smoothing:inherit;font-weight: 700;font-size: 12px;" ng-bind="premio.city"></div>
+                                          </div>
+                                       </div>
+                                    </a>
+                                 </li>
+                              </ul>
+															<!-- Fin lista premios -->
+                           </div>
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                     </div>
+                     <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+               </div>
+               <!-- /.page-content -->
+            </div>
+         </div>
+         <!-- /.main-content -->
+         <div class="footer">
+            <div class="footer-inner">
+               <div class="footer-content">
+                  <span class="bigger-120">
+                  <span class="blue bolder">BMA</span>
+                  Aplicaciones &copy; 2017
+                  </span>
+               </div>
+            </div>
+         </div>
+         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+         </a>
+      </div>
+      <!-- /.main-container -->
+
+      <!-- basic scripts -->
+      <script src="assets/js/jquery-2.1.4.min.js"></script>
+      <script src="assets/js/bootstrap.min.js"></script>
+      <!-- ace scripts -->
+      <script src="assets/js/ace-elements.min.js"></script>
+      <script src="assets/js/ace.min.js"></script>
+      <!-- inline scripts related to this page -->
+      <script src="assets/js/jquery.easypiechart.min.js"></script>
+      <script src="assets/js/jquery.gritter.min.js"></script>
+      <script>
+      $('#gritter-regular').on(ace.click_event, function(){
+					$.gritter.add({
+						title: 'This is a regular notice!',
+						text: 'This will fade out after a certain amount of time. Vivamus eget tincidunt velit. Cum sociis natoque penatibus et <a href="#" class="blue">magnis dis parturient</a> montes, nascetur ridiculus mus.',
+						image: 'assets/images/avatars/avatar1.png', //in Ace demo ./dist will be replaced by correct assets path
+						sticky: false,
+						time: '',
+						class_name: ('gritter-light')
+					});
+
+					return false;
+				});
+        </script>
+
+   </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="assets/css/jquery.gritter.min.css" />
+    <style>
+      html, body {height: 100%;margin: 0;padding: 0;}
+      #map {height: 100%;}
+    </style>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+    <!-- ANGULAR.JS -->
+    <!-- ionic/angularjs js -->
+<script src="lib/ionic/js/ionic.bundle.js"></script>
+<!--<script src="assets/lib/angular.min.js"></script>-->
+<script src="assets/lib/angular-animate.min.js"></script>
+<script src="assets/lib/angular-sanitize.min.js"></script>
+<script src="assets/lib/angular-route.min.js"></script>
+<script src="assets/lib/angular-resource.min.js"></script>
+<script src="assets/lib/angular-ui-router.min.js"></script>
+<script src="assets/utils/lodgeoUtility.js"></script>
+<script src="assets/utils/Constant.js"></script>
+<script src="assets/controllers/promotions.js"></script>
+<script src="assets/lib/ngStorage.js"></script>
+
+<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+<script src="lib/angularfire/dist/angularfire.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+<!-- Firebase -->
+<!--<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>-->
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+ apiKey: "AIzaSyDiOismV5QKmeRcpwziozJqYBLrYhD4p-4",
+ authDomain: "udream-e60e9.firebaseapp.com",
+ databaseURL: "https://udream-e60e9.firebaseio.com",
+ storageBucket: "udream-e60e9.appspot.com",
+ messagingSenderId: "964274225982"
+};
+firebase.initializeApp(config);
+</script>
+
+  </head>
+  <body class="no-skin" ng-app="udream" ng-controller="miAventuraVirtualCtrl">
+    <div id="navbar" class="navbar navbar-default   ace-save-state" style="background: #2b5d83;">
+      <div class="navbar-container ace-save-state" id="navbar-container">
+        <button  ng-click="back()" type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar" style="background: #2b5d83;">
+           <img style="width: 15px;"  src="img/Back-btn_White.png">
+        </button>
+
+        <div class="navbar-header pull-left">
+          <a href="index.html" class="navbar-brand">
+            <small>
+              <i class="fa fa-leaf"></i>
+              UDream
+            </small>
+          </a>
+        </div>
+
+      </div><!-- /.navbar-container -->
+    </div>
+
+    <div id="map"></div>
+    <div  style="position:absolute;bottom:0px;visibility:hidden;" id="mobile-game-bar">
+      <div class="container">
+          <div class="col-lg-4 col-md-4 col-sm-3 col-md-4 col-xs-3  game-bar-section">
+            <div class="game-bar-box game-bar-credits">
+                <div class="game-bar-coin"></div>
+                <div class="game-bar-coin game-bar-coin-loop"></div>
+                <div class="loading-spinner-line line-small loading-spinner-wallet">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+                <span id="premioValue"  style="margin-right: 5px;"></span>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6ZadIgiYuBC9eTnnC5PovTteWhdZOM7k&libraries=geometry"></script>
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/jquery.easypiechart.min.js"></script>
+    <script src="assets/js/jquery.gritter.min.js"></script>
+  </body>
+</html>

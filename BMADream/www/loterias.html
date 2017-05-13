@@ -1,0 +1,223 @@
+    <link href="css/loterias/primitiva/reset.css" rel="stylesheet">
+    <link href="css/loterias/primitiva/primitiva1.css" rel="stylesheet">
+    <link href="css/loterias/primitiva/carousel.css" rel="stylesheet">
+    <link href="css/loterias/primitiva/theme.css" rel="stylesheet">
+
+
+      <div class="header">
+         <div class="content-header" style="border: 2px solid #232f3e;">
+            <div class="menuJuegos">
+               <a ng-click="showMenu()">
+               <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/ico_juegosmobile.png" alt="Icono Juegos" title="Icono Juegos">
+               </a>
+               <ul  class="listadoJuegos oculta" style="border-bottom: 3px solid #232f3e;">
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Lotería Nacional" href="#/app/loteria_nacional" text="">
+                     <span>Lotería Nacional</span>
+                     <img width="24" height="24" alt="Lotería Nacional" title="Lotería Nacional" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_loterianacional.png">
+                     </a>
+
+                  </li>
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Primitiva" href="#/app/primitiva">
+                     <span>Primitiva</span>
+                     <img width="24" height="24" alt="Primitiva" title="Primitiva" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_primitiva.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/la-primitiva/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/la-primitiva"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_LAPR"></p>
+                           <a id="enlaceImgBote_LAPR" href="https://juegos.loteriasyapuestas.es:443/jugar/la-primitiva/apuesta?access=headercms&amp;lang=es" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_lapr.png" alt="Primitiva">
+                           </a>
+                           <a href="" id="urlJackPot_LAPR" class="hidden">
+                           <span class="bote" id="nombreBote_LAPR">BOTE: </span><span class="bote" id="valor_bote_LAPR"></span>
+                           <span id="fechaBote_LAPR"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Euromillones" href="#/app/euromillon">
+                     <span>Euromillones</span>
+                     <img width="24" height="24" alt="Euromillones" title="Euromillones" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_euromillones.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/euromillones/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/euromillones"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_EMIL"></p>
+                           <a id="enlaceImgBote_EMIL" href="https://juegos.loteriasyapuestas.es:443/jugar/euromillones/apuesta?access=headercms&amp;lang=es" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_emil.png" alt="Euromillones">
+                           </a>
+                           <a href="" id="urlJackPot_EMIL" class="hidden">
+                           <span class="bote" id="nombreBote_EMIL">BOTE: </span><span class="bote" id="valor_bote_EMIL"></span>
+                           <span id="fechaBote_EMIL"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Bonoloto" href="https://juegos.loteriasyapuestas.es:443/jugar/bonoloto/apuesta?access=headercms&amp;lang=es">
+                     <span>Bonoloto</span><img width="24" height="24" alt="Bonoloto" title="Bonoloto" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_bonoloto.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/bonoloto/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/bonoloto"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_BONO"></p>
+                           <a id="enlaceImgBote_BONO" href="https://juegos.loteriasyapuestas.es:443/jugar/bonoloto/apuesta?access=headercms&amp;lang=es" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_bono.png" alt="Bonoloto">
+                           </a>
+                           <a href="" id="urlJackPot_BONO" class="hidden">
+                           <span class="bote" id="nombreBote_BONO">BOTE: </span><span class="bote" id="valor_bote_BONO"></span>
+                           <span id="fechaBote_BONO"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Gordo" href="https://juegos.loteriasyapuestas.es:443/jugar/gordo-primitiva/apuesta?access=headercms&amp;lang=es">
+                     <span>Gordo</span>
+                     <img width="24" height="24" alt="Gordo" title="Gordo" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_gordo.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/gordo-primitiva/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/gordo-primitiva"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_ELGR"></p>
+                           <a href="https://juegos.loteriasyapuestas.es:443/jugar/gordo-primitiva/apuesta?access=headercms&amp;lang=es" id="enlaceImgBote_ELGR" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_elgr.png" alt="Gordo">
+                           </a>
+                           <a href="" id="urlJackPot_ELGR" class="hidden">
+                           <span class="bote" id="nombreBote_ELGR">BOTE: </span><span class="bote" id="valor_bote_ELGR"></span>
+                           <span id="fechaBote_ELGR"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Quiniela" href="https://juegos.loteriasyapuestas.es:443/jugar/la-quiniela/apuesta?access=headercms&amp;lang=es">
+                     <span>Quiniela</span>
+                     <img width="24" height="24" alt="Quiniela" title="Quiniela" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_quiniela.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb menuLeft">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/la-quiniela/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/la-quiniela"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_LAQU"></p>
+                           <a id="enlaceImgBote_LAQU" href="https://juegos.loteriasyapuestas.es:443/jugar/la-quiniela/apuesta?access=headercms&amp;lang=es" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_laqu.png" alt="Quiniela">
+                           </a>
+                           <a href="" id="urlJackPot_LAQU" class="hidden">
+                           <span class="bote" id="nombreBote_LAQU">BOTE: </span><span class="bote" id="valor_bote_LAQU"></span>
+                           <span id="fechaBote_LAQU"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Quinigol" href="https://juegos.loteriasyapuestas.es:443/jugar/quinigol/apuesta?access=headercms&amp;lang=es">
+                     <span>Quinigol</span>
+                     <img width="24" height="24" alt="Quinigol" title="Quinigol" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_quinigol.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb menuLeft">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/quinigol/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/el-quinigol"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_QGOL"></p>
+                           <a id="enlaceImgBote_QGOL" href="https://juegos.loteriasyapuestas.es:443/jugar/quinigol/apuesta?access=headercms&amp;lang=es" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_qgol.png" alt="cabecera.juegos.titulo.quingol">
+                           </a>
+                           <a href="" id="urlJackPot_QGOL" class="hidden">
+                           <span class="bote" id="nombreBote_QGOL">BOTE: </span><span class="bote" id="valor_bote_QGOL"></span>
+                           <span id="fechaBote_QGOL"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menuItem">
+                     <a style="border-right:none;" class="menuLogos" title="Lototurf" href="https://juegos.loteriasyapuestas.es:443/jugar/lototurf/apuesta?access=headercms&amp;lang=es">
+                     <span>Lototurf</span>
+                     <img width="24" height="24" alt="Lototurf" title="Lototurf" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_lototurf.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb menuLeft">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/lototurf/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/lototurf"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_LOTU"></p>
+                           <a id="enlaceImgBote_LOTU" href="https://juegos.loteriasyapuestas.es:443/jugar/lototurf/apuesta?access=headercms&amp;lang=es" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_lotu.png" alt="#">
+                           </a>
+                           <a href="" id="urlJackPot_LOTU" class="hidden">
+                           <span class="bote" id="nombreBote_LOTU">BOTE: </span><span class="bote" id="valor_bote_LOTU"></span>
+                           <span id="fechaBote_LOTU"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="menuItem last">
+                     <a style="border-right:none;" class="menuLogos" title="Quíntuple Plus" href="https://juegos.loteriasyapuestas.es:443/jugar/quintupleplus/apuesta?access=headercms&amp;lang=es">
+                     <span>Quíntuple Plus</span>
+                     <img width="24" height="24" alt="Quíntuple Plus" title="Quíntuple Plus" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_lototurf.png">
+                     </a>
+                     <div class="desplegableMenu ocultaWeb menuLeft">
+                        <div class="contenedorIzquierdo">
+                           <ul>
+                              <li class="itemJugar"><a href="https://juegos.loteriasyapuestas.es:443/jugar/quintupleplus/apuesta?access=headercms&amp;lang=es"><span>JUGAR</span></a></li>
+                              <li class="itemResultados"><a href="http://www.loteriasyapuestas.es/es/quintuple-plus"><span>RESULTADOS</span></a></li>
+                           </ul>
+                        </div>
+                        <div class="contenedorDerecho">
+                           <p id="textoEditorBote_QUPL"></p>
+                           <a id="enlaceImgBote_QUPL" href="https://juegos.loteriasyapuestas.es:443/jugar/quintupleplus/apuesta?access=headercms&amp;lang=es" title="JUGAR">
+                           <img src="http://www.loteriasyapuestas.eshttps://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/imagen_desplegable_qupl.png" alt="#">
+                           </a>
+                           <a href="" id="urlJackPot_QUPL" class="hidden">
+                           <span class="bote" id="nombreBote_QUPL">BOTE: </span><span class="bote" id="valor_bote_QUPL"></span>
+                           <span id="fechaBote_QUPL"></span>
+                           </a>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+            <div class="logotipo">
+               <h1 class="content-logo">
+                  <a href="http://www.loteriasyapuestas.es/es/">
+                  <img title="Loterías y Apuestas del Estado" alt="Loterías y Apuestas del Estado" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_loterias.png">
+                  </a>
+               </h1>
+            </div>
+
+         </div>
+      </div>

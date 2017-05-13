@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>Login Page - UDream</title>
+
+		<meta name="description" content="User login page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+		<!-- text fonts -->
+		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+		<!-- ace styles -->
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<!-- ionic/angularjs js -->
+	 <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+		<!-- ANGULAR.JS -->
+	 <script src="assets/lib/angular.min.js"></script>
+	 <script src="assets/lib/angular-animate.min.js"></script>
+	 <script src="assets/lib/angular-sanitize.min.js"></script>
+	 <script src="assets/lib/angular-route.min.js"></script>
+	 <script src="assets/lib/angular-resource.min.js"></script>
+	 <script src="assets/lib/angular-ui-router.min.js"></script>
+	 <script src="assets/utils/lodgeoUtility.js"></script>
+	 <script src="assets/controllers/app.js"></script>
+	 <script src="assets/lib/ngStorage.js"></script>
+
+	 <!--- CryptoJS AES Libraries --->
+	<script src="assets/lib/aes.js"></script>
+	<script src="assets/lib/enc-base64-min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+</head>
+
+	<body class="login-layout" ng-app="udream">
+		<div class="main-container" ng-controller = "loginCtrl">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+									<i class="ace-icon fa fa-globe green"></i>
+									<span class="red">U</span>
+									<span class="white" id="id-text2">Dream</span>
+								</h1>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div ng-show="loginbox" id="login-box" class="login-box visible widget-box no-border visible">
+									<div class="widget-body">
+										<div class="widget-main" style="background: #e9f0fa;">
+											<h4 class="header blue lighter bigger" style="font-weight: bold;">
+												<i class="ace-icon fa fa-book green"></i>
+													Inserte Su Información
+											</h4>
+											<div ng-show="buttonPressed" class="loader"></div>
+											<div ng-show="isLoginError">
+												<div class="alert alert-info bigger-110" ng-bind="messageError">
+												</div>
+											</div><!-- #dialog-confirm -->
+											<div class="space-6"></div>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input ng-model = "email_login" type="text" class="form-control" placeholder="Email" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input ng-model = "password_login" type="password" class="form-control" placeholder="contraseña" />
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
+													</label>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+														<!--<label class="inline">
+															<input type="checkbox" class="ace" />
+															<span class="lbl"> Remember Me</span>
+														</label>-->
+
+														<button ng-click="login()" type="button" class="pull-right btn btn-sm btn-primary" style="width:100%">
+															<i class="ace-icon fa fa-key"></i>
+															<span class="bigger-110">Iniciar sesión</span>
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+
+											<div class="social-or-login center">
+												<span class="bigger-110">O inicia sesión con</span>
+											</div>
+
+											<div class="space-6"></div>
+
+											<div class="social-login center">
+												<a class="btn btn-primary">
+													<i class="ace-icon fa fa-facebook"></i>
+												</a>
+
+												<a class="btn btn-info">
+													<i class="ace-icon fa fa-twitter"></i>
+												</a>
+
+												<a class="btn btn-danger">
+													<i class="ace-icon fa fa-google-plus"></i>
+												</a>
+											</div>
+										</div><!-- /.widget-main -->
+
+										<div class="toolbar clearfix">
+											<div>
+												<a ng-click="forgotPass()" href="#" class="forgot-password-link">
+													<i class="ace-icon fa fa-arrow-left"></i>
+													Olvidaste contraseña
+												</a>
+											</div>
+
+											<div>
+												<a ng-click="createAccount()" class="user-signup-link">
+													Crear cuenta
+													<i class="ace-icon fa fa-arrow-right"></i>
+												</a>
+											</div>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.login-box -->
+
+								<div ng-show="forgotbox" id="forgot-box" class="forgot-box widget-box no-border visible">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header red lighter bigger">
+												<i class="ace-icon fa fa-key"></i>
+												Recuperar contraseña
+											</h4>
+
+											<div ng-show="resetPressed" class="loader-reset"></div>
+
+											<!-- Error message -->
+											<div ng-show="isResetPassError">
+												<div class="alert alert-info bigger-110" ng-bind="messageError">
+												</div>
+											</div><!--End error message-->
+											<div class="space-6"></div>
+											<p>
+											 Introduzca el email asociado a su cuenta de Udream
+											</p>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input ng-model="emailReset" type="email" class="form-control" placeholder="Email" />
+															<i class="ace-icon fa fa-envelope"></i>
+														</span>
+													</label>
+
+													<div class="clearfix">
+														<button ng-click="resetPassword()" type="button" class="width-35 pull-right btn btn-sm btn-danger">
+															<i class="ace-icon fa fa-lightbulb-o"></i>
+															<span class="bigger-110">Enviar</span>
+														</button>
+													</div>
+												</fieldset>
+											</form>
+										</div><!-- /.widget-main -->
+
+										<div class="toolbar center">
+											<a ng-click="iniciarSesion()"  class="back-to-login-link">
+												Iniciar sesión
+												<i class="ace-icon fa fa-arrow-right"></i>
+											</a>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.forgot-box -->
+
+								<div ng-show="signupbox" id="signup-box" class="signup-box widget-box no-border visible">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header green lighter bigger" style="font-weight: bold;">
+												<i class="ace-icon fa fa-users blue"></i>
+												Crear cuenta
+											</h4>
+
+											<div ng-show="isError">
+												<div class="alert alert-info bigger-110">
+													{{messageError}}
+												</div>
+											</div><!-- #dialog-confirm -->
+
+											<div class="space-6"></div>
+											<p> Inserte sus datos: </p>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input ng-model="email" type="email" class="form-control" placeholder="Email" />
+															<i class="ace-icon fa fa-envelope"></i>
+														</span>
+													</label>
+
+												<!--	<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input ng-model="userRegister" type="text" class="form-control" placeholder="Username" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
+													</label>-->
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input ng-model="passwordRegister" type="password" class="form-control" placeholder="Contraseña" />
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input ng-model="repeatPassword" type="password" class="form-control" placeholder="Repetir contraseña" />
+															<i class="ace-icon fa fa-retweet"></i>
+														</span>
+													</label>
+
+													<!--<label class="block">
+														<input type="checkbox" class="ace" />
+														<span class="lbl">
+															I accept the
+															<a href="#">User Agreement</a>
+														</span>
+													</label>-->
+
+													<div class="space-24"></div>
+
+													<div class="clearfix">
+														<button type="reset" class="width-30 pull-left btn btn-sm">
+															<i class="ace-icon fa fa-refresh"></i>
+															<span class="bigger-110">Reset</span>
+														</button>
+
+														<button ng-click="register()" type="button" class="width-65 pull-right btn btn-sm btn-success">
+															<span class="bigger-110">Crea tu cuenta</span>
+
+															<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+														</button>
+													</div>
+												</fieldset>
+											</form>
+										</div>
+
+										<div class="toolbar center">
+											<a ng-click="iniciarSesion()" class="back-to-login-link">
+												<i class="ace-icon fa fa-arrow-left"></i>
+												Iniciar sesión
+											</a>
+										</div>
+									</div><!-- /.widget-body -->
+								</div><!-- /.signup-box -->
+							</div><!-- /.position-relative -->
+
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.main-content -->
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+	</body>
+</html>

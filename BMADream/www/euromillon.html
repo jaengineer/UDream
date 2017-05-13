@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta charset="utf-8" />
+      <title>UDream</title>
+      <meta name="description" content="overview &amp; stats" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      <!-- bootstrap & fontawesome -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+      <!-- page specific plugin styles -->
+      <!-- text fonts -->
+      <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+      <!-- ace styles -->
+      <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+      <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+      <![endif]-->
+      <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+      <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+      <script src="assets/js/ace-extra.min.js"></script>
+
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/jquery.js?v=20170125-1657"></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/jquery.cookie.js?v=20170125-1657"></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/jquery-ui.js?v=20170125-1657"></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/mensajes_es.js?v=20170125-1657"></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/validaciones.js?v=20170125-1657"></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/saga_generico.js?v=20170125-1657"></script>
+      <script type="text/javascript" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/jquery.jsonp.js?v=20170125-1657" /></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/owl.carousel.js?v=20170125-1657"></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/slider.js?v=20170125-1657"></script>
+      <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/patterns.js?v=20170125-1657"></script>
+      <link rel="stylesheet" href="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/css/saga/reset.css?v=20170125-1657">
+      <link rel="stylesheet" href="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/css/saga/css.css?v=20170125-1657">
+      <link rel="stylesheet" href="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/css/saga/owl.carousel.css?v=20170125-1657">
+      <link rel="stylesheet" href="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/css/saga/owl.theme.css?v=20170125-1657">
+
+      <script>
+         function ga(send, event, eventCategory, eventAction, eventLabel, eventValue, fieldsObject){
+
+         }
+      </script>
+
+
+            <script src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/paso1_euromillon.js"></script>
+
+   </head>
+   <body>
+      <div class="container_global">
+         <div class="veloLogin hidden"></div>
+         <div class="cargandoLogin hidden">
+            <div class="imagen-cargando">
+               <img title="Loading" alt="Loading" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/loading_btn2.gif">
+            </div>
+         </div>
+      </div>
+      <div id="navbar" class="navbar navbar-default   ace-save-state">
+         <div class="navbar-container ace-save-state" id="navbar-container">
+            <div class="navbar-header">
+               <div class="contenedor_titulo_juego" style="display: block;">
+                  <h2><img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_euromillones.png" alt="Lotería Nacional" title="Lotería Nacional"></h2>
+                  <ul class="barra-progreso tres">
+                     <li class="paso-primero activo">
+                        <a>
+                        <span class="numero">1</span>
+                        </a>
+                        <span class="texto">Rellena</span>
+                     </li>
+                     <li class="paso-segundo ">
+                        <a>
+                        <span class="numero">2</span>
+                        </a>
+                        <span class="texto">Organiza</span>
+                     </li>
+                     <li class="paso-tercero last ">
+                        <a>
+                        <span class="numero">3</span>
+                        </a>
+                        <span class="texto">Apuesta</span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+               <ul class="nav ace-nav" style="font-size: 14px;">
+                  <li style="width: 33%;" class="purple dropdown-modal">
+                     <a class="dropdown-toggle" href="main.html">
+                        <!--<i class="ace-icon fa fa-bell icon-animated-bell"></i>-->
+                        <span class="">Eventos</span>
+                     </a>
+                  </li>
+                  <li style="width: 33%;" class="green dropdown-modal">
+                     <a  class="dropdown-toggle" href="promotionsList.html">
+                        <!--	<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+                        <span class="">Promociones</span>
+                     </a>
+                  </li>
+                  <li style="width: 33%;" class="green dropdown-modal">
+                     <a data-toggle="dropdown" class="dropdown-toggle" href="">
+                        <!--	<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+                        <span class="">Apuestas</span>
+                     </a>
+                     <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                        <li class="dropdown-header">
+                           <i class="ace-icon fa fa-key"></i>
+                           3 Juegos
+                        </li>
+                        <li class="dropdown-content">
+                           <ul class="dropdown-menu dropdown-navbar navbar-pink">
+                              <li>
+                                 <a href="loteria_nacional.html">
+                                    <div class="clearfix">
+                                       <span class="pull-left">
+                                       <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logo_LoteriaNacional_titulo.png">
+                                       Loteria nacional
+                                       </span>
+                                    </div>
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="#">
+                                 <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logoPrimitiva_titulo.png">
+                                 Primitiva
+                                 </a>
+                              </li>
+                              <li>
+                                 <a href="#">
+                                    <div class="clearfix">
+                                       <span class="pull-left">
+                                       <img src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/logoEuromillones_titulo.png">
+                                       Euromillones
+                                       </span>
+                                    </div>
+                                 </a>
+                              </li>
+                           </ul>
+                        </li>
+                        <!--<li class="dropdown-footer">
+                           <a href="#">
+                             See all notifications
+                             <i class="ace-icon fa fa-arrow-right"></i>
+                           </a>
+                           </li>-->
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <!-- /.navbar-container -->
+      </div>
+      <div class="contenedor_contenido">
+         <div id="recargaZonaJuego"  class="juego-euromillones">
+            <script
+               src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/js/saga/mersenneTwister.js?v="></script>
+            <!-- ************  RIFAS  ************** -->
+            <!-- ************  FIN RIFAS  ************** -->
+            <input type="hidden" id="sysmteNanoTime" value="4174208145871496" />
+            <input type="hidden" id="rejillaNumerosValor" value="50" />
+            <input type="hidden" id="rejillaEstrellasValor" value="12" />
+            <div class="">
+               <input type="hidden" value="/jugar/euromillones/apuesta?access=headercms&lang=es" id="urlPaso1Compra"
+                  name="urlPaso1Compra" />
+
+               <div id="container-tabs">
+                  <div id="content-tabs">
+                     <ul>
+                        <li id="apuestaTipoSimple" class="selected">
+                           <a
+                              id="simpleTab">
+                              <strong>S</strong>
+                              <p>
+                                 Sencilla
+                              </p>
+                           </a>
+                        </li>
+                        <li id="apuestaTipoMultiple">
+                           <a id="multipleTab">
+                              <strong>M</strong>
+                              <p>
+                                 Múltiple
+                              </p>
+                           </a>
+                        </li>
+                     </ul>
+                     <input type="hidden" id="tipoEuromillon" value="1"> <input
+                        type="hidden" id="tipoEuromillonEliminarTodo" value="1">
+                  </div>
+               </div>
+               <div class="inner_container content-item ">
+                  <div class="boleto">
+                     <div class="col_left" id="columna_boleto">
+                        <div class="content-item-boleto-bloque">
+                           <strong>Bloque
+                           1 <span
+                              id="textoParaSimples">(de	  5)
+                           </span></strong> <a id=limpiarBoleto class="limpiar"><span
+                              class="text-eliminar" style="width: 80px;">Vaciar </span><span
+                              class="ico-eliminar"></span></a>
+                        </div>
+                        <div
+                           class="content-item-boleto-bloque content-aleatoria "
+                           id="contenedorBloqueAleatoria">
+                           <strong>¿Quieres que sea aleatoria? </strong>
+                           <select
+                              class="hidden" name="" id="multipleNumeros" onchange="">
+                              <option value="num">NÚMEROS </option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                           </select>
+                           <select class="hidden" name="" id="multipleEstrellas"
+                              onchange="">
+                              <option value="num">ESTRELLAS </option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                           </select>
+                           <a id="generarAleatoria" class="limpiar"> <span
+                              class="text-eliminar" style="width: 80px;"> Generar
+                           </span> <span class="ico-eliminar"></span>
+                           </a>
+                        </div>
+                        <div class="content-item-boleto-boleto">
+                           <ul>
+                              <li><button value="1" id="boton_num_1" name="botonBoleto" class="botonBoleto">1</button></li>
+                              <li><button value="11" id="boton_num_11" name="botonBoleto" class="botonBoleto">11</button></li>
+                              <li><button value="21" id="boton_num_21" name="botonBoleto" class="botonBoleto">21</button></li>
+                              <li><button value="31" id="boton_num_31" name="botonBoleto" class="botonBoleto">31</button></li>
+                              <li><button value="41" id="boton_num_41" name="botonBoleto" class="botonBoleto">41</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="2" id="boton_num_2" name="botonBoleto" class="botonBoleto">2</button></li>
+                              <li><button value="12" id="boton_num_12" name="botonBoleto" class="botonBoleto">12</button></li>
+                              <li><button value="22" id="boton_num_22" name="botonBoleto" class="botonBoleto">22</button></li>
+                              <li><button value="32" id="boton_num_32" name="botonBoleto" class="botonBoleto">32</button></li>
+                              <li><button value="42" id="boton_num_42" name="botonBoleto" class="botonBoleto">42</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="3" id="boton_num_3" name="botonBoleto" class="botonBoleto">3</button></li>
+                              <li><button value="13" id="boton_num_13" name="botonBoleto" class="botonBoleto">13</button></li>
+                              <li><button value="23" id="boton_num_23" name="botonBoleto" class="botonBoleto">23</button></li>
+                              <li><button value="33" id="boton_num_33" name="botonBoleto" class="botonBoleto">33</button></li>
+                              <li><button value="43" id="boton_num_43" name="botonBoleto" class="botonBoleto">43</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="4" id="boton_num_4" name="botonBoleto" class="botonBoleto">4</button></li>
+                              <li><button value="14" id="boton_num_14" name="botonBoleto" class="botonBoleto">14</button></li>
+                              <li><button value="24" id="boton_num_24" name="botonBoleto" class="botonBoleto">24</button></li>
+                              <li><button value="34" id="boton_num_34" name="botonBoleto" class="botonBoleto">34</button></li>
+                              <li><button value="44" id="boton_num_44" name="botonBoleto" class="botonBoleto">44</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="5" id="boton_num_5" name="botonBoleto" class="botonBoleto">5</button></li>
+                              <li><button value="15" id="boton_num_15" name="botonBoleto" class="botonBoleto">15</button></li>
+                              <li><button value="25" id="boton_num_25" name="botonBoleto" class="botonBoleto">25</button></li>
+                              <li><button value="35" id="boton_num_35" name="botonBoleto" class="botonBoleto">35</button></li>
+                              <li><button value="45" id="boton_num_45" name="botonBoleto" class="botonBoleto">45</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="6" id="boton_num_6" name="botonBoleto" class="botonBoleto">6</button></li>
+                              <li><button value="16" id="boton_num_16" name="botonBoleto" class="botonBoleto">16</button></li>
+                              <li><button value="26" id="boton_num_26" name="botonBoleto" class="botonBoleto">26</button></li>
+                              <li><button value="36" id="boton_num_36" name="botonBoleto" class="botonBoleto">36</button></li>
+                              <li><button value="46" id="boton_num_46" name="botonBoleto" class="botonBoleto">46</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="7" id="boton_num_7" name="botonBoleto" class="botonBoleto">7</button></li>
+                              <li><button value="17" id="boton_num_17" name="botonBoleto" class="botonBoleto">17</button></li>
+                              <li><button value="27" id="boton_num_27" name="botonBoleto" class="botonBoleto">27</button></li>
+                              <li><button value="37" id="boton_num_37" name="botonBoleto" class="botonBoleto">37</button></li>
+                              <li><button value="47" id="boton_num_47" name="botonBoleto" class="botonBoleto">47</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="8" id="boton_num_8" name="botonBoleto" class="botonBoleto">8</button></li>
+                              <li><button value="18" id="boton_num_18" name="botonBoleto" class="botonBoleto">18</button></li>
+                              <li><button value="28" id="boton_num_28" name="botonBoleto" class="botonBoleto">28</button></li>
+                              <li><button value="38" id="boton_num_38" name="botonBoleto" class="botonBoleto">38</button></li>
+                              <li><button value="48" id="boton_num_48" name="botonBoleto" class="botonBoleto">48</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="9" id="boton_num_9" name="botonBoleto" class="botonBoleto">9</button></li>
+                              <li><button value="19" id="boton_num_19" name="botonBoleto" class="botonBoleto">19</button></li>
+                              <li><button value="29" id="boton_num_29" name="botonBoleto" class="botonBoleto">29</button></li>
+                              <li><button value="39" id="boton_num_39" name="botonBoleto" class="botonBoleto">39</button></li>
+                              <li><button value="49" id="boton_num_49" name="botonBoleto" class="botonBoleto">49</button></li>
+                           </ul>
+                           <ul>
+                              <li><button value="10" id="boton_num_10" name="botonBoleto" class="botonBoleto">10</button></li>
+                              <li><button value="20" id="boton_num_20" name="botonBoleto" class="botonBoleto">20</button></li>
+                              <li><button value="30" id="boton_num_30" name="botonBoleto" class="botonBoleto">30</button></li>
+                              <li><button value="40" id="boton_num_40" name="botonBoleto" class="botonBoleto">40</button></li>
+                              <li><button value="50" id="boton_num_50" name="botonBoleto" class="botonBoleto">50</button></li>
+                           </ul>
+                        </div>
+                        <div class="content-item-boleto-boleto estrellas">
+                           <div class="titulo-estrellas">
+                              ESTRELLAS
+                           </div>
+                           <ul class="list-estrellas">
+                              <li>
+                                 <ul>
+                                    <li><span class="estrella"></span><button value="1" id="boton_estrella_1" class="botonBoleto" name="botonBoletoEstrellas">1</button></li>
+                                    <li><span class="estrella"></span><button value="4" id="boton_estrella_4" class="botonBoleto" name="botonBoletoEstrellas">4</button></li>
+                                    <li><span class="estrella"></span><button value="7" id="boton_estrella_7" class="botonBoleto" name="botonBoletoEstrellas">7</button></li>
+                                    <li><span class="estrella"></span><button value="10" id="boton_estrella_10" class="botonBoleto" name="botonBoletoEstrellas">10</button></li>
+                                 </ul>
+                              </li>
+                              <li>
+                                 <ul>
+                                    <li><span class="estrella"></span><button value="2" id="boton_estrella_2" class="botonBoleto" name="botonBoletoEstrellas">2</button></li>
+                                    <li><span class="estrella"></span><button value="5" id="boton_estrella_5" class="botonBoleto" name="botonBoletoEstrellas">5</button></li>
+                                    <li><span class="estrella"></span><button value="8" id="boton_estrella_8" class="botonBoleto" name="botonBoletoEstrellas">8</button></li>
+                                    <li><span class="estrella"></span><button value="11" id="boton_estrella_11" class="botonBoleto" name="botonBoletoEstrellas">11</button></li>
+                                 </ul>
+                              </li>
+                              <li>
+                                 <ul>
+                                    <li><span class="estrella"></span><button value="3" id="boton_estrella_3" class="botonBoleto" name="botonBoletoEstrellas">3</button></li>
+                                    <li><span class="estrella"></span><button value="6" id="boton_estrella_6" class="botonBoleto" name="botonBoletoEstrellas">6</button></li>
+                                    <li><span class="estrella"></span><button value="9" id="boton_estrella_9" class="botonBoleto" name="botonBoletoEstrellas">9</button></li>
+                                    <li><span class="estrella"></span><button value="12" id="boton_estrella_12" class="botonBoleto" name="botonBoletoEstrellas">12</button></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="content-button-anadir">
+                     <button type="button" id="confirmarColumna">
+                     CONTINUAR
+                     </button>
+                  </div>
+               </div>
+            </div>
+
+            <div class="column67 fRight">
+
+
+               <div class="content-botones">
+                  <form id="formBoleto" name="boleto"
+                     action="/jugar/euromillones/opciones?access=headercms&lang=es" method="post"
+                     class="botones_boleto">
+                     <input type="hidden" value="/jugar/euromillones/apuesta?access=headercms&lang=es"
+                      id="urlAccionValidar" /> <input type="hidden" id="joker"
+                        name="joker"
+                        value="false"></input>
+                     <input type="hidden" id="pronostico" name="pronostico" value=""></input>
+                     <input type="hidden" id="numeros" name="numeros" value=""></input> <input
+                        type="hidden" id="estrellas" name="estrellas" value=""></input> <input
+                        type="hidden" id="columna" name="columna" value="" />
+                     <input type="hidden" id="accionController" name="accionController"
+                        value=""></input> <input type="hidden" id="automatica"
+                        name="automatica" value=""></input>
+                  </form>
+               </div>
+
+            </div>
+            <input type="hidden" id="WJ1002_js" value='Si quieres apostar este bloque deberás rellenar todos los datos necesarios arriba. Puedes consultar nuestra ayuda <a target="_blank" href="http://www.loteriasyapuestas.es/es/euromillones/como-se-juega/como-jugar-a-euromillones-en-loteriasyapuestas-es">aquí</a>."'/>
+            <input type="hidden" id="W-APUESTA-SIMPLE-EN-MULTIPLE_js" value='En modalidad múltiple no puedes elegir una apuesta sencilla.'/>
+         </div>
+         <div class="velo hidden"> </div>
+         <div class="cargando hidden">
+            <div class="imagen-cargando">
+               <img title="Cargando…" alt="Cargando…" src="https://juegos.loteriasyapuestas.es/f/loterias/estaticos/imagenes/saga/loading_btn2.gif"/>
+            </div>
+         </div>
+
+      </div>
+   </div>
+   <div id="volver-arriba">
+      <a class="top" href="#header"></a>
+   </div>
+
+
+   <input type="hidden" id="time_out_compra" value="25"/>
+   <input type="hidden" id="tiempo_maximo_espera_session" value="1260"/>
+   <input type="hidden" id="perfil_ampliado_ts" value=""/>
+   <input type="hidden" id="horaPlataformaMillis" value="1492904038670"/>
+   <input type="hidden" id="W00001_js" value="Fallo genérico"/>
+   <input type="hidden" id="WJ1001_js" value="Por favor, antes de continuar añade el bloque pendiente"/>
+   <input type="hidden" id="WJ1004_js" value="Para añadir  el Joker necesitas añadir al menos un bloque del juego principal."/>
+   <input type="hidden" id="WJ1009_js" value="¿Estás seguro de que quieres eliminar esta apuesta?"/>
+   <input type="hidden" id="WJ1010_js" value="¿Estás seguro de que quieres eliminar esta apuesta?"/>
+   <input type="hidden" id="W02003_js" value="El formato no es correcto. Asegúrate de haber escrito bien el/los campo/s"/>
+   <input type="hidden" id="W02007_js" value="No puedes dejar el campo en blanco"/>
+   <input type="hidden" id="WJ1013_js" value="La apuesta mínima es de dos bloques. Añade por favor los bloques necesarios."/>
+   <input type="hidden" id="WJ1031_js" value="Al cambiar de sorteo o de modo de juego se perderán todos los décimos seleccionados. <span>¿Estás seguro de que quieres cambiarlo?</span>"/>
+   <input type="hidden" id="WJ1014_js" value="Al cambiar de tipo de juego se pierden todos los pronósticos realizados.<span>¿Estás seguro de que quieres cambiar?</span>"/>
+   <input type="hidden" id="WJ1036_js" value="¿Estás seguro que quieres eliminar tu(s) décimo(s)?"/>
+   <input type="hidden" id="hostPortCMS" value="http://www.loteriasyapuestas.es/es/" />
+   <input type="hidden" id="WJ1040_js" value="WJ1040"/>
+   <input type="hidden" id="hostPortCMS" value="http://www.loteriasyapuestas.es/es/" />
+</div>
+</body>
+<!--198-->

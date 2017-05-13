@@ -1,0 +1,385 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es"><head>
+<!-- Inserted by miarroba -->
+<script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-T2VG59"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T2VG59');</script>
+<!-- Inserted by miarroba -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="tragaperras.css" type="text/css" rel="stylesheet" media="all">
+
+		<title>
+
+			Juego JavaScript - Maquina Tragaperras
+
+		</title>
+
+
+		<script type="text/javascript">
+
+
+
+			jugada = new Array;
+			banderas = new Array;
+			banderas[0] = new Image ( 90 , 90 );
+			banderas[0].src = "fresa.png";
+			banderas[1] = new Image ( 90 , 90 );
+			banderas[1].src = "kiwi.png";
+			banderas[2] = new Image ( 90 , 90 );
+			banderas[2].src = "limon.png";
+			banderas[3] = new Image ( 90 , 90 );
+			banderas[3].src = "sandia.png";
+			banderas[4] = new Image ( 90, 450 );
+			banderas[4].src = "todas.png";
+			premio = new Array;
+			var juegoauto;
+			var posicion = [0 , 0, 0];
+			var parar = [0, 0, 0];
+			var giros = [0, 0, 0];
+			var posgiro = [0, 0, 0];
+
+			function cargardinero()
+			{
+				//dineroant = readCookie("dinero");
+				dineroant=10;
+				if ( dineroant == null || dineroant == 0) { document.getElementById("dinero").value = 10 }
+				else { document.getElementById("dinero").value = dineroant; }
+			}
+
+			function guardardinero()
+			{
+				dineroaguardar=parseInt(document.getElementById("dinero").value)+
+					parseInt(document.getElementById("creditos").value)+
+					parseInt(document.getElementById("acumulado").value);
+				createCookie("dinero",dineroaguardar,30);
+			}
+
+
+			function insert()
+			{
+				document.getElementById("dinero").value--;
+				document.getElementById("creditos").value++;
+				if ( document.getElementById("dinero").value == 0 ) { document.getElementById("insertdinero").disabled = 1; }
+			  document.getElementById("botonjugar").disabled = 0;
+			  autojuego();
+			}
+
+			function comprobarpremio()
+			{
+				document.getElementById("ganado").value = 0;
+				switch ( premio[0] )
+				{
+					case 1:
+					{
+						if ( (premio[1] == 2) || (premio[2] == 2) || (premio[3] == 2) )
+						{
+							document.getElementById("ganado").value = 1;
+							document.getElementById("fila1").style.background = "#FF8040";
+						}
+						break;
+					}
+					case 2:
+					{
+						document.getElementById("ganado").value = 20;
+						document.getElementById("fila2").style.background = "#FF8040";
+						break;
+					}
+					case 3:
+					{
+						document.getElementById("ganado").value = 10;
+						document.getElementById("fila10").style.background = "#FF8040";
+					}
+				}
+				if ( premio[1] == 3 )
+				{
+					document.getElementById("ganado").value = 10;
+					document.getElementById("fila5").style.background = "#FF8040";
+				}
+				if ( premio[2] == 3 )
+				{
+					document.getElementById("ganado").value = 10;
+					document.getElementById("fila4").style.background = "#FF8040";
+				}
+				if ( premio[3] == 3 )
+				{
+					document.getElementById("ganado").value = 2;
+					document.getElementById("fila3").style.background = "#FF8040";
+				}
+				if ( document.getElementById("ganado").value > 0 )
+				{
+					document.getElementById("acumulado").value = parseInt(document.getElementById("acumulado").value) + parseInt(document.getElementById("ganado").value);
+					document.getElementById("botoncobrar").disabled = 0;
+				}
+				if ( document.getElementById("creditos").value > 0 ) { document.getElementById("botonjugar").disabled = 0; }
+				if ( document.getElementById("acumulado").value > 0 ) { document.getElementById("botoncobrar").disabled = 0; }
+				if ( document.getElementById("dinero").value > 0 ) { document.getElementById("insertdinero").disabled = 0; }
+			}
+
+			function parate (caja)
+			{
+				clearInterval(parar[caja]);
+				if ( (posgiro[caja] == jugada[caja]) && (giros[caja]%9 == 0) )
+				{
+					if ( caja == 2 ) { comprobarpremio(); }
+				}
+				else { parar[caja] = setInterval ( eval("girar"+caja), 40 ); }
+			}
+
+			function girar0 ()
+			{
+				giros[0]++;
+				if ( (giros[0] % 9) == 0 ) { posgiro[0]++; }
+				if ( posgiro[0] == 4 ) { posgiro[0] = 0; }
+				document.getElementById("cuadro0").src = banderas[4].src;
+				document.getElementById("cuadrado0").style.height = "90px";
+				if ( (posgiro[0] == 0) && (giros[0]%9 == 0) ) { document.getElementById("cuadro0").style.top = "0px"; }
+				else { document.getElementById("cuadro0").style.top = -((posgiro[0]*90)+((giros[0]%9))*10) + "px"; }
+				if ( giros[0] >= 300 ) { parate(0); }
+			}
+
+			function girar1 ()
+			{
+				giros[1]++;
+				if ( (giros[1] % 9) == 0 ) { posgiro[1]++; }
+				if ( posgiro[1] == 4 ) { posgiro[1] = 0; }
+				document.getElementById("cuadro1").src = banderas[4].src;
+				document.getElementById("cuadrado1").style.height = "90px";
+				if ( (posgiro[1] == 0) && (giros[1]%9 == 0) ) { document.getElementById("cuadro1").style.top = "0px"; }
+				else { document.getElementById("cuadro1").style.top = -((posgiro[1]*90)+((giros[1]%9))*10) + "px"; }
+				if ( giros[1] >= 400 ) { parate(1); }
+			}
+
+			function girar2 ()
+			{
+				giros[2]++;
+				if ( (giros[2] % 9) == 0 ) { posgiro[2]++; }
+				if ( posgiro[2] == 4 ) { posgiro[2] = 0; }
+				document.getElementById("cuadro2").src = banderas[4].src;
+				document.getElementById("cuadrado2").style.height = "90px";
+				if ( (posgiro[2] == 0) && (giros[2]%9 == 0) ) { document.getElementById("cuadro2").style.top = "0px"; }
+				else { document.getElementById("cuadro2").style.top = -((posgiro[2]*90)+((giros[2]%9))*10) + "px"; }
+				if ( giros[2] >= 500 ) { parate(2); }
+			}
+
+			function mostrarjugada()
+			{
+				for ( x = 0; x < 3; x++ )
+				{
+					giros[x] = 0;
+					parar[x] = setInterval ( eval("girar"+x), 10 );
+				}
+			}
+
+			function jugar()
+			{
+				clearTimeout(juegoauto);
+				document.getElementById("creditos").value--;
+				document.getElementById("ganado").value = 0;
+				document.getElementById("botonjugar").disabled = 1;
+				document.getElementById("botoncobrar").disabled = 1;
+				document.getElementById("insertdinero").disabled = 1;
+				document.getElementById("fila1").style.background = "#FFF";
+				document.getElementById("fila2").style.background = "#FFF";
+				document.getElementById("fila3").style.background = "#FFF";
+				document.getElementById("fila4").style.background = "#FFF";
+				document.getElementById("fila5").style.background = "#FFF";
+				document.getElementById("fila10").style.background = "#FFF";
+				for ( x = 0; x < 4; x++ ) { premio[x] = 0; }
+				for ( x = 0; x < 3; x++ )
+				{
+					jugada[x] = Math.floor(Math.random()*4);
+					premio[jugada[x]]++;
+				}
+				mostrarjugada();
+				if ( document.getElementById("creditos").value == 0 ) { document.getElementById("botonjugar").disabled = 1; }
+				else { autojuego(); }
+			}
+
+			function cobrar()
+			{
+				document.getElementById("dinero").value = parseInt(document.getElementById("dinero").value) + parseInt(document.getElementById("acumulado").value);
+				document.getElementById("acumulado").value = 0;
+				document.getElementById("ganado").value = 0;
+				document.getElementById("botoncobrar").disabled = 1;
+				document.getElementById("insertdinero").disabled = 0;
+			}
+
+			function autojuego()
+			{
+				clearTimeout(juegoauto);
+				juegoauto = setTimeout ( "jugar()", 15000 );
+			}
+
+
+
+		</script>
+
+	</head>
+
+	<body onload="cargardinero()" onunload="guardardinero()">
+<!-- Inserted by miarroba -->
+<noscript>&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2VG59" height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>
+<!-- Inserted by miarroba -->
+
+		<h1> Tècnica de sprites</h1>
+        <center><h5></h5></center>
+
+		<div class="premios">
+			<table id="tablapremios" cellspacing="0" cellpadding="1" rules="all">
+				<tbody><tr>
+					<th> Combinación </th>
+					<th> Premio </th>
+				</tr>
+				<tr id="fila10" style="background: rgb(255, 255, 255);">
+					<td>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+					</td>
+					<td> 20€ </td>
+				</tr>
+				<tr id="fila5" style="background: rgb(255, 255, 255);">
+					<td>
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">
+					</td>
+					<td> 10€ </td>
+				</tr>
+				<tr id="fila4" style="background: rgb(255, 255, 255);">
+					<td>
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">
+					</td>
+					<td> 10€ </td>
+				</tr>
+				<tr id="fila3" style="background: rgb(255, 255, 255);">
+					<td>
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">
+					</td>
+					<td> 10€ </td>
+				</tr>
+				<tr id="fila2" style="background: rgb(255, 255, 255);">
+					<td>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">	<br>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">	<br>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">	<br>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+					</td>
+					<td> 2€ </td>
+				</tr>
+				<tr id="fila1" style="background: rgb(255, 255, 255);">
+					<td>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">	<br>
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">	<br>
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="kiwi.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">	<br>
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">	<br>
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="limon.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">	<br>
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">	<br>
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="sandia.png" alt="" width="20" height="20">
+						<img src="fresa.png" alt="" width="20" height="20">	<br>
+					</td>
+					<td> 1€ </td>
+				</tr>
+			</tbody></table>
+		</div>
+
+		<div class="fondo">
+
+			<div id="capadinero" class="centrado">
+				<label for="dinero"> Dinero Disponible (€):
+					<input id="dinero" class="numero" name="dinero" type="text" size="4" maxlength="4" readonly="readonly">
+				</label>
+				<input id="insertdinero" name="insertdinero" type="button" value="Insertar Moneda" onclick="insert()" tabindex="1">
+			</div>
+
+			<div id="capacreditos" class="centrado">
+				<label for="creditos"> Creditos:
+					<input id="creditos" class="numero" name="creditos" type="text" size="4" maxlength="4" value="0" readonly="readonly">
+				</label>
+
+			</div><input id="botonjugar" name="botonjugar" type="button" value="Jugar" onclick="jugar()" tabindex="2" disabled="">
+
+			<div id="capajugada" class="centrado">
+				<div id="cuadrado0" class="cuadrado" style="height: 90px;">
+					<img id="cuadro0" class="cuadro" src="http://practiquesm6.webcindario.com/tragaperras/todas.png" alt="" style="top: -180px;">
+				</div>
+				<div id="cuadrado1" class="cuadrado" style="height: 90px;">
+					<img id="cuadro1" class="cuadro" src="http://practiquesm6.webcindario.com/tragaperras/todas.png" alt="" style="top: 0px;">
+				</div>
+				<div id="cuadrado2" class="cuadrado" style="height: 90px;">
+					<img id="cuadro2" class="cuadro" src="http://practiquesm6.webcindario.com/tragaperras/todas.png" alt="" style="top: -90px;">
+				</div>
+			</div>
+
+			<div id="capaganado" class="centrado">
+				<label for="ganado"> Premio:
+				<input id="ganado" class="numero" name="ganado" type="text" size="4" maxlength="4" value="0" readonly="readonly">
+				</label>
+				<label for="acumulado"> Acumulado:
+					<input id="acumulado" class="numero" name="acumulado" type="text" size="4" maxlength="4" value="0" readonly="readonly">
+				</label>
+				<input id="botoncobrar" name="botoncobrar" type="button" value="Cobrar" onclick="cobrar()" tabindex="3" disabled="">
+			</div>
+
+		</div>
+
+		<hr>
+
+		<div> </div>
+			<a href="../index.html">menu</a>
+	<!-- Inserted by miarroba -->
+<script type="text/javascript" src="http://hosting.miarroba.info/?__muid=f00bcedde9eefe3e8c0801f4ed97c5bb5c61a3f8&amp;h=1613433&amp;t=1494635115&amp;k=74be6abf6ad3f2818a22ae0f67e37424"></script><iframe id="tpcc450e563" name="tpcc450e563" allowtransparency="1" onload="if( document.getElementById('setCookiec450e563') ){document.getElementById('setCookiec450e563').submit();document.getElementById('setCookiec450e563').parentNode.removeChild(document.getElementById('setCookiec450e563'));}" frameborder="0" marginheight="0" marginwidth="0" scrolling="0" src="about:blank" style="background:none;border:none;margin:0px;padding:0px;overflow:hidden;position:absolute;top:-10000px;left:-10000px;height:1px;width:1px;display:block;"></iframe>
+<script type="text/javascript">yuhuads="//track.yuhuads.com/interstitial/57d822b2ed6ef6f55254abe6/"+((new Date()).getTime()) + Math.random();document.write("<scr"+"ipt language='javascript' type='text/javascript' src='"+yuhuads+"'></scri"+"pt>");</script><script language="javascript" type="text/javascript" src="//track.yuhuads.com/interstitial/57d822b2ed6ef6f55254abe6/14946351159430.9124906476451227"></script>
+<noscript>&lt;img alt="beacon" border="0" width="1" height="1" src="http://hosting.miarroba.info/?__muid=f00bcedde9eefe3e8c0801f4ed97c5bb5c61a3f8&amp;amp;h=1613433&amp;amp;t=1494635115&amp;amp;k=74be6abf6ad3f2818a22ae0f67e37424&amp;amp;img=1" /&gt;</noscript>
+<!-- Inserted by miarroba -->
+
+
+
+</body></html>
